@@ -1,43 +1,25 @@
-const express = require('express')
-const path = require("path");
-const app = express()
+const socket = io();
 
-// #############################################################################
-// Logs all request paths and method
-app.use(function (req, res, next) {
-  res.set('x-timestamp', Date.now())
-  res.set('x-powered-by', 'cyclic.sh')
-  console.log(`[${new Date().toISOString()}] ${req.ip} ${req.method} ${req.path}`);
-  next();
+const messageContainer = document.getElementById('message-container');
+const messageForm = document.getElementById('chat-form');
+const messageInput = document.getElementById('message-input');
+
+messageForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const message = messageInput.value;
+  socket.emit('chatMessage', message);
+  messageInput.value = '';
 });
 
-// #############################################################################
-// This configures static hosting for files in /public that have the extensions
-// listed in the array.
-var options = {
-  dotfiles: 'ignore',
-  etag: false,
-  extensions: ['htm', 'html','css','js','ico','jpg','jpeg','png','svg'],
-  index: ['index.html'],
-  maxAge: '1m',
-  redirect: false
+function addMessage(message) {
+  const messageElement = document.createElement('div');
+  messageElement.classList.add('message');
+  messageElement.innerHTML = `<p class="meta">User ${message.id}</p>
+                              <p class="text">${message.text}</p>`;
+  messageContainer.append(messageElement);
+  messageContainer.scrollTop = messageContainer.scrollHeight;
 }
-app.use(express.static('public', options))
 
-// #############################################################################
-// Catch all handler for all other request.
-app.use('*', (req,res) => {
-  res.json({
-      at: new Date().toISOString(),
-      method: req.method,
-      hostname: req.hostname,
-      ip: req.ip,
-      query: req.query,
-      headers: req.headers,
-      cookies: req.cookies,
-      params: req.params
-    })
-    .end()
-})
-
-module.exports = app
+socket.on('chatMessage', message => {
+  addMessage(message);
+});
