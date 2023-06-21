@@ -1,36 +1,20 @@
-# Cyclic - Express Hello World
+# MatRx
 
-This is a basic starter Expressjs app with:
+A new Flutter project.
 
-- Static file hosting
-- Logging Middleware
-- Catch-all handler that echoes request info
+## Getting Started
 
-## Local Quick Start
+FlutterFlow projects are built to run on the Flutter _stable_ release.
 
-- Clone to your local
-- Install dependencies `npm install`
-- Run locally `npm serve`
-- Make requests
-  - Browser: `http://localhost:3000/some/path?q=query+one&q=second+query&single=value`
-  - Command line: `curl -i -XGET "http://localhost:3000/cmd/line-curl"`
+### Getting started continued:
 
-## Deploy in under 10 seconds
+This project is a starting point for a Flutter application.
 
-[![Deploy to Cyclic](https://deploy.cyclic.app/button.svg)](https://deploy.cyclic.app/)
-- Sets up instant continuous deployment on `git push`
-- Realtime backend logs and API request monitoring
+A few resources to get you started if this is your first Flutter project:
 
-### Cyclic Runtime
+- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-- Cyclic hosts your app on serverless infrastructure. That means there is no guarantee of memory or file system persistence between requests.
-- The runtime expects a nodejs entry point defined as:
-  - package.json "main" field defines the entry point file (if missing uses index.js)
-  - Entry point starts a server on `process.env.PORT`
-
-## Say Hi
-
-Ask a question or give us a shout out:
-
-- 💌 hello@cyclic.sh
-- 🐣 https://twitter.com/cyclicsoftware
+For help getting started with Flutter, view our
+[online documentation](https://flutter.dev/docs), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
